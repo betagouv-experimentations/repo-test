@@ -1,19 +1,24 @@
+import Link from "next/link";
 import { fr } from "@codegouvfr/react-dsfr";
+import TaskList from "@/components/TaskList";
 
 export default function HomePage(): React.ReactElement {
   return (
     <div className={fr.cx("fr-container", "fr-my-6w")}>
-      <h1>Bienvenue sur ton prototype</h1>
-      <p className={fr.cx("fr-text--lead")}>
-        Ce prototype est prêt à être construit. Décris ce que tu veux à Claude
-        avec la commande <code>/build</code>.
-      </p>
-      <p>
-        En attendant, tu peux consulter les pages obligatoires :{" "}
-        <a href="/mentions-legales">Mentions légales</a>,{" "}
-        <a href="/accessibilite">Accessibilité</a>, et{" "}
-        <a href="/donnees-personnelles">Données personnelles</a>.
-      </p>
+      <div className={fr.cx("fr-grid-row", "fr-grid-row--middle", "fr-mb-4w")}>
+        <div className={fr.cx("fr-col")}>
+          <h1>Mes tâches</h1>
+        </div>
+        <div>
+          <Link
+            href="/taches/nouvelle"
+            className={fr.cx("fr-btn")}
+          >
+            Ajouter une tâche
+          </Link>
+        </div>
+      </div>
+      <TaskList />
     </div>
   );
 }

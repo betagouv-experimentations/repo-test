@@ -2,17 +2,46 @@
 // Lancer avec : npm run seed
 
 import { db } from "../src/db";
+import { tasks } from "../src/db/schema";
 
 async function seed(): Promise<void> {
   console.log("→ Seeding database...");
 
-  // Exemple :
-  // await db.insert(partners).values([
-  //   { name: "ADEME", email: "contact@ademe.fr" },
-  //   { name: "Pôle Emploi", email: "contact@pole-emploi.fr" },
-  // ]);
+  await db.delete(tasks);
 
-  console.log("✓ Seed terminé. (Aucune donnée insérée — édite scripts/seed.ts)");
+  await db.insert(tasks).values([
+    {
+      title: "Préparer le compte-rendu de réunion",
+      description: "Rédiger le CR de la réunion d'équipe du lundi",
+      priority: "high",
+      completed: false,
+    },
+    {
+      title: "Envoyer le rapport trimestriel",
+      description: "Compiler les données et envoyer le rapport au comité de pilotage",
+      priority: "high",
+      completed: true,
+    },
+    {
+      title: "Mettre à jour la documentation",
+      description: "Actualiser la documentation technique du projet",
+      priority: "normal",
+      completed: false,
+    },
+    {
+      title: "Réserver la salle pour le séminaire",
+      priority: "normal",
+      completed: false,
+    },
+    {
+      title: "Acheter des fournitures de bureau",
+      description: "Stylos, cahiers, post-it",
+      priority: "low",
+      completed: true,
+    },
+  ]);
+
+  console.log("✓ Seed terminé. 5 tâches insérées.");
 }
 
 seed()
